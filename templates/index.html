@@ -90,11 +90,13 @@
 <section>
     <div style="background-color: darkred; color: white; padding: 10px; padding: 30px 10px; text-align: center;">
         <h4 style="font-weight: 100;">If there is a specific issue you are trying to raise with us, you can sumit it here</h4>
-        <button class="button" style="color:#DA2C27; background-color: white;"><i class="fas fa-search"></i> Submit Now</button>
+        <a href={{url_for("feedback")}}>
+            <button class="button" style="color:#DA2C27; background-color: white;"><i class="fas fa-search"></i> Submit Now</button>
+        </a>
     </div>
 </section>
 
-<section id="conversations">
+<!-- <section id="conversations">
 <div class="container">
     <div class="flexrow">   
         <div>
@@ -141,7 +143,7 @@
     </div>
 </div>
 
-</section>
+</section> -->
 
 <section id="team">
     <div class="container">

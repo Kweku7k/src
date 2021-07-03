@@ -9,9 +9,11 @@ from werkzeug.datastructures import  FileStorage
 from flask_uploads import configure_uploads, IMAGES, UploadSet
 from PIL import Image
 import os
+from flask_migrate import Migrate
 
 app=Flask(__name__)
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 # UPLOAD_FOLDER = 'static/img/uploads'
 # ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
@@ -48,7 +50,18 @@ class Issue(db.Model):
     author = db.Column(db.String)
     
     def __repr__(self):
-        return f"Posts('{self.id}', '{self.title}')"
+        return f"Issue('{self.id}', '{self.title}')"
+
+class Feedback(db.Model):
+    tablename = ['Posts']
+
+    id = db.Column(db.Integer, primary_key=True)
+    feedback = db.Column(db.String, nullable=False)
+    phone = db.Column(db.String)
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    def __repr__(self):
+        return f"Feedback('{self.id}', '{self.title}')"
 
 
 @app.route('/',methods=['GET','POST'])
@@ -95,7 +108,8 @@ def edit(post_id):
 
 @app.route('/updates')
 def updates(): 
-    return render_template('updates.html')
+    posts = Posts.query.all()
+    return render_template('updates.html', posts=posts)
 
 
 @app.route('/admin')
@@ -111,9 +125,17 @@ def profile(id):
 def update(id):
     return render_template('update.html')
 
-@app.route("/feedback")
+@app.route("/feedback",methods=['GET','POST'])
 def feedback():
-    return render_template('feedback.html')
+    form = FeedbackForm()
+    if form.validate_on_submit():
+        print("Done")
+        newFeedback = Feedback(phone=form.phone.data, feedback=form.feedback.data)
+        db.session.add(newFeedback)
+        db.session.commit()
+        flash(f'Your feedback has been submitted successfully','success')
+        return redirect(url_for('home'))
+    return render_template('feedback.html', form=form)
 
 @app.route("/admin/posts")
 def adminPosts():

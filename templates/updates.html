@@ -12,20 +12,28 @@
     </div>
     <div class="row">
 
+        {% for post in posts %}
         <div class="col-md-4">
-            <a href="{{url_for('update', id='1')}}">
-                <div class="card">
-                    <img src="{{url_for("static", filename='img/WuComFlyer2.png')}}" alt="SRC SOCIALS" width="100%">
-                    <div class="subcard">
-                        <h4>Happy Womens Day<i class="fa fa-arrow-right" aria-hidden="true"></i></h4>
-                        <h6 class="text-muted" style="font-weight: 100;">View More</h6>
-                    </div>
-                </div>
-            
-            </a>
-        </div>
+            <a href="{{url_for('post',id=post.id)}}">
 
-        <div class="col-md-4">
+            <div>
+
+            <div class="card">
+                <div>
+                    <!-- {{ url_for('static',filename='img/Fries-porn.png')}} -->
+                    <img src="{{url_for("static", filename='uploads/images/' + post.image_file)}}" alt="SRC SOCIALS" width="100%">
+                </div>
+                <div class="subcard">
+                    <h4>{{post.title}} <i class="fa fa-arrow-right" aria-hidden="true"></i></h4>
+                    <h6 class="text-muted" style="font-weight: 100;">View More</h6>
+                </div>
+            </div>
+        </div>
+        </a>    
+        </div>
+        {% endfor %}
+
+        <!-- <div class="col-md-4">
             <div class="card">
                 <img src="{{url_for("static", filename='img/social.png')}}" alt="SRC SOCIALS" width="100%">
                 <div class="subcard">
@@ -46,7 +54,7 @@
                     <h6 class="text-muted" style="font-weight: 100;">View More</h6>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 </section>
