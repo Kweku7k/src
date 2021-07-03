@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container">
+    <br>
+    <h6>Hello, Welcome</h6>
+    <h4><b>Nana Kweku Adumatta</b></h4>
+<br>
+    <div class="row">
+        <div class="col-md-4">
+            <a href="{{url_for('addpost')}}">
+
+            <div class="adminCard">
+                <div class="ellipse">
+                </div>
+                <h4>Add a new post</h4>
+            </div>
+            </a>    
+        </div>
+
+       
+
+        <div class="col-md-4">
+            <a href="{{url_for('adminPosts')}}">
+
+            <div class="adminCard">
+                <div class="ellipse">
+                </div>
+                <h4>View All Posts</h4>
+            </div>
+            </a>
+        </div>
+
+        
+        <div class="col-md-4">
+            <a href="{{url_for('adminPosts')}}">
+            <div class="adminCard">
+                <div class="ellipse">
+                </div>
+                <h4>Raise an issue</h4>
+            </div>
+        </a>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="adminCard">
+                <div class="ellipse">i
+                </div>
+                <h4>View Feedback</h4>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

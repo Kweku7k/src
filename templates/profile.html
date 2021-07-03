@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<section id="team">
+    <div class="container">
+
+        <div>
+            <h4>SRC President</h4>
+            <hr class="header-line">
+        </div>
+
+        <div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="{{url_for("static", filename='img/team/Nargeh.jpg')}}" alt="SRC SOCIALS" style="object-fit: cover; height: 70vh;">
+                    </div>
+                    <div class="col-md-6">
+                        <h1>Emmanuel Nargeh</h1>
+                        <h6 class="text-muted">SRC President </h6>
+<br>
+                        <div class="infoCard">
+                            <h6 class="text-muted">Preceeded by </h6>
+                            <h5>Vincent Henneh</h5>
+                        </div>
+
+                        <div class="infoCard">
+                            <h6 class="text-muted">Birthday</h6>
+                            <h5>1st June </h5>
+                        </div>
+                       
+                        <div class="infoCard">
+                            <h6 class="text-muted">Course</h6>
+                            <h5>Pharmacy Student </h5>
+                        </div>
+                        
+                        <div class="infoCard">
+                            <h6 class="text-muted">Alma Matter</h6>
+                            <h5>Koforidua Secondary Technical</h5>
+                        </div>
+
+
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<section id="new">
+    <section id="team">
+        <div class="container">
+    
+            <div class="flexrow">   
+                <div>
+                    <h4>Meet Our Team</h4>
+                    <hr class="header-line">
+                </div>
+
+                    <!-- <u><h6 style="font-weight: 100;">View All <i class="fas fa-long-arrow-alt-right"></i></h6></u> -->
+
+            </div>
+    
+            <div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a style="text-decoration: none;" href="{{url_for("profile", id='1')}}">
+                            
+                                <img src="{{url_for("static", filename='img/team/Nargeh.jpg')}}" alt="SRC SOCIALS" width="100%" height="250px" style="object-fit: cover;">
+    
+                            <div class="subcard">
+                                <h6 class="text-muted" style="font-weight: 100;">SRC PRESIDENT</h6>
+                                <h6>Emmanuel Nargeh<i class="fa fa-arrow-right" aria-hidden="true"></i></h6>
+                            </div>
+
+                        </a>
+                        </div>
+    
+                        <div class="col-md-3">
+                            <img src="{{url_for("static", filename='img/team/derrick.jpg')}}" alt="SRC SOCIALS" width="100%" height="250px" style="object-fit: cover;">
+    
+                            <div class="subcard">
+                                <h6 class="text-muted" style="font-weight: 100;">SRC PRO</h6>
+                                <h6>Demor Dotse Derrick<i class="fa fa-arrow-right" aria-hidden="true"></i></h6>
+                            </div>
+                        </div>
+    
+                        <div class="col-md-3">  
+                            <img src="{{url_for("static", filename='img/team/Degraft.jpg')}}" alt="SRC SOCIALS" width="100%" height="250px" style="object-fit: cover;">
+                            <div class="subcard">
+                                <h6 class="text-muted" style="font-weight: 100;">SRC ORGANIZING SEC.</h6>
+                                <h6>Degraft Yeboah <i class="fa fa-arrow-right" aria-hidden="true"></i></h6>
+                            </div>
+                        </div>
+    
+                        <div class="col-md-3">
+                            <img src="{{url_for("static", filename='img/team/Kwame.jpg')}}" alt="SRC SOCIALS" width="100%">
+                            <div class="subcard">
+                                <h6 class="text-muted" style="font-weight: 100;">SRC ENTERCOM CHAIRMAN</h6>
+                                <h6>Kwame Attafuah<i class="fa fa-arrow-right" aria-hidden="true"></i></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+{% endblock %}

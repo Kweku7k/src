@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<section id="new">
+<div class="container">
+    <div class="flexrow">   
+        <div>
+            <h4>Whats new</h4>
+            <hr class="header-line">
+        </div>
+       
+    </div>
+    <div class="row">
+
+        <div class="col-md-4">
+            <a href="{{url_for('update', id='1')}}">
+                <div class="card">
+                    <img src="{{url_for("static", filename='img/WuComFlyer2.png')}}" alt="SRC SOCIALS" width="100%">
+                    <div class="subcard">
+                        <h4>Happy Womens Day<i class="fa fa-arrow-right" aria-hidden="true"></i></h4>
+                        <h6 class="text-muted" style="font-weight: 100;">View More</h6>
+                    </div>
+                </div>
+            
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{url_for("static", filename='img/social.png')}}" alt="SRC SOCIALS" width="100%">
+                <div class="subcard">
+                    <h4>Follow us on social media <i class="fa fa-arrow-right" aria-hidden="true"></i></h4>
+                    <h6 class="text-muted" style="font-weight: 100;">View More</h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            
+            <div class="card">
+                <div>
+                    <img src="{{url_for("static", filename='img/XOOM.png')}}" alt="SRC SOCIALS" width="100%">
+                </div>
+                <div class="subcard">
+                    <h4>WoCom'21 <i class="fa fa-arrow-right" aria-hidden="true"></i></h4>
+                    <h6 class="text-muted" style="font-weight: 100;">View More</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+{% endblock %}

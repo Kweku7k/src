@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container">
+
+<section id="team">
+    <div class="container">
+
+        <div>
+            <h4>WoCom' 21</h4>
+            <hr class="header-line">
+        </div>
+
+        <div>
+            <div class="container">
+                <div class="row">
+
+                        <img src="{{url_for("static", filename='img/WuComFlyer2.png')}}" alt="SRC SOCIALS" style="object-fit: cover; width:100%;">
+                        <br/>
+                    </div>
+                </div>
+                <div class="row">
+                        <h4>Information about Wu Com</h4>
+                        <p>The Womens commision organised this initiative to celebrate international womens day. </p>
+                </div>
+        </div>
+    </div>
+</section>
+</div>
+
+{% endblock %}

@@ -1,5 +1,18 @@
+html{
+    scroll-behavior: smooth
+}
+
 body{
   font-family: 'Plus Jakarta Display', sans-serif;
+}
+
+.text{
+    margin-bottom: 0;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
 }
 
 .button{
@@ -11,6 +24,33 @@ body{
     color: white;
     font-weight: bold;
 }
+
+.ellipse{
+    width: 60px;
+    height: 60px;
+    background-color: #DA2C27;
+    border-radius: 50%;
+    margin-bottom: 10px;
+
+}
+
+.adminCard{
+    background-color: #f7f7f7;
+    padding: 10%;
+    border-radius:20px ;
+    margin-bottom: 20px;
+    /* border: 1px solid black; */
+}
+
+.postCard{
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius:10px ;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
 
 .button-outline{
     color: #DA2C27;
@@ -80,6 +120,7 @@ section{
 
   .card {
     display: inline-block;
+    margin-bottom: 10px;
   }
 
 footer{
@@ -88,4 +129,8 @@ footer{
     padding:10px;
     color: white;
 
+}
+
+.icon{
+    padding: 10px;
 }
