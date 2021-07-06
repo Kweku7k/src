@@ -112,6 +112,10 @@ def updates():
     return render_template('updates.html', posts=posts)
 
 
+@app.route("/faceofcu")
+def faceofcu():
+    return render_template('faceOfCu.html')
+    
 @app.route('/admin')
 def admin():    
     return render_template('admin.html')
