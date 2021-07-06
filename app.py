@@ -119,6 +119,16 @@ def faceofcu():
 @app.route("/fpreview")
 def fpreview():
     return render_template('faceofcupreview.html')
+
+
+@app.route("/payment")
+def payment():
+    return render_template('payment.html')
+
+@app.route("/votes")
+def votes():
+    return render_template('votes.html')
+    
     
 @app.route('/admin')
 def admin():    

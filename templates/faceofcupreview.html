@@ -21,30 +21,25 @@
         <!-- <br/> -->
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero corrupti earum sint velit reprehenderit cupiditate et iste sed. Non laboriosam ea rerum in minus est molestiae dolore quae, iste rem.</p>
     
+<br/>
+<h6 class="text-muted"><b>NANA KWEKU ADUMATTA</b></h6>
         <div class="scrolling-wrapper-flexbox">
-    <div class="candidateCard">
-        <img src="https://images.unsplash.com/photo-1522512115668-c09775d6f424?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsYWNrJTIwd29tZW58ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" class="candidatePicture" style="overflow: hidden; width: 207px; height: 207px; border-radius:20px 20px 0 0 ;">
-        <div style="padding: 10px;">    
-            <h6><b>Maame Akua</b></h6>
-            <h6 class="text-muted">Pharmacy</h6>
-        </div>
-    </div>
-    
-    <div class="candidateCard">
-        <img src="https://images.unsplash.com/photo-1589317621382-0cbef7ffcc4c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8YmxhY2slMjB3b21lbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" class="candidatePicture" style="overflow: hidden; width:207px; height: 207px; border-radius:20px 20px 0 0 ;">
-        <div style="padding: 10px;">    
-            <h6><b>Maame Akua</b></h6>
-            <h6 class="text-muted">Pharmacy</h6>
-        </div>
-    </div>
 
-      <div class="candidateCard">
-        <img src="https://images.unsplash.com/photo-1495490140452-5a226aef25d4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGJsYWNrJTIwd29tZW58ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" class="candidatePicture" style="overflow: hidden; width:207px; height: 207px; border-radius:20px 20px 0 0 ;">
+    <div style="margin-right: 10px; border-radius: 10px;">
+        <img src="https://images.unsplash.com/photo-1495490140452-5a226aef25d4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGJsYWNrJTIwd29tZW58ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" class="candidatePicture" style="overflow: hidden; width:207px; height: 207px; border-radius: 20px;">
+    </div>
+    <div>
+        <img src="https://images.unsplash.com/photo-1495490140452-5a226aef25d4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGJsYWNrJTIwd29tZW58ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" class="candidatePicture" style="overflow: hidden; width:207px; height: 207px; border-radius: 20px;">
+    </div>
+    <div>
+        <img src="https://images.unsplash.com/photo-1495490140452-5a226aef25d4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGJsYWNrJTIwd29tZW58ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" class="candidatePicture" style="overflow: hidden; width:207px; height: 207px; border-radius: 20px;">
+    </div>
+      <!-- <div class="candidateCard">
         <div style="padding: 10px;">    
             <h6><b>Maame Akua</b></h6>
             <h6 class="text-muted">Pharmacy</h6>
         </div>
-    </div>
+    </div> -->
 </div>
 <div style="height: 10vh;">
 
@@ -55,7 +50,9 @@
 </div>
 <div style="position: fixed; bottom: 10px; width: 100%;">    
     <div style="text-align: center;">
-        <button class="button" style="margin: auto;">Vote For Me</button>
+        <a href='{{url_for("votes")}}'>
+            <button class="button" style="margin: auto;">Vote For Me</button>
+        </a>
     </div>
 </div>
 

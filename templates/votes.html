@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div style="margin:auto; text-align: center;">
+    <br/>
+    <br/>
+    <input class="amount" onchange="changeAmount()" type="number" style="font-size: 50px; width: 70vw; text-align: center; border: none; border-bottom: 1px solid black;" placeholder="Ghc" name="" id="">
+
+    <div style="margin-top: 20px;">
+        <h6 class="text-muted">The number of votes are <span id="total" style="background-color: rgb(28, 202, 106); color:white; padding: 10px; border-radius: 5px;"> 0 </span></h6>
+    </div>
+</div>
+
+<script>
+    var amount = document.getElementsByClassName('amount')[0].value
+    console.log(amount) 
+
+    function changeAmount(){
+        var amount = document.getElementsByClassName('amount')[0].value
+        var append = amount * 100
+        document.getElementById('total').innerHTML = append
+        console.log(append)
+    }
+    
+</script>
+{% endblock %}
