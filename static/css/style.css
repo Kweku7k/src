@@ -10,6 +10,28 @@ body{
     margin-bottom: 0;
 }
 
+.scrolling-wrapper-flexbox {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .candidateCard {
+    flex: 0 0 auto;
+    background-color: rgb(243, 243, 243);
+    /* padding: 20px;  */
+    width: 60%;
+    margin-right: 10px;
+    border-radius:20px ;
+  }
+
+  .candidatePicture{
+      width: 100%;
+      object-fit: cover;
+      margin-bottom: 10px;
+
+  }
+
 a{
     text-decoration: none;
     color: inherit;

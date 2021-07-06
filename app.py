@@ -115,6 +115,10 @@ def updates():
 @app.route("/faceofcu")
 def faceofcu():
     return render_template('faceOfCu.html')
+
+@app.route("/fpreview")
+def fpreview():
+    return render_template('faceofcupreview.html')
     
 @app.route('/admin')
 def admin():    
