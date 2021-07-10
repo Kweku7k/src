@@ -50,12 +50,11 @@ class Candidates(db.Model):
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
     age = db.Column(db.String)
-    # instagram = db.Column( default=datetime.utcnow)
     votes = db.Column(db.String)
     image_file = db.Column(db.String(200), default='default.png')
     
     def __repr__(self):
-        return f"Candidates('{self.id}', '{self.title}')"
+        return f"Candidates('{self.id}', '{self.name}')"
 
 
 
@@ -85,15 +84,33 @@ class Feedback(db.Model):
 
 @app.route('/',methods=['GET','POST'])
 def home():
-    limitpost = Posts.query.order_by(Posts.id.desc()).limit(3).all()
-    print("The Posts" + str(limitpost)) 
-    return render_template('index.html', limitpost=limitpost)
+    candidates = Candidates.query.all()
+    return render_template('faceofcu.html', candidates=candidates)
+
+# Default Config
+# @app.route('/',methods=['GET','POST'])
+# def home():
+#     limitpost = Posts.query.order_by(Posts.id.desc()).limit(3).all()
+#     print("The Posts" + str(limitpost)) 
+#     return render_template('index.html', limitpost=limitpost)
 
 @app.route("/post/<int:id>")
 def post(id):
     post = Posts.query.get_or_404(id)
     print(post)
     return render_template('post.html', post=post)
+
+@app.route("/addcontestant", methods=['POST','GET'])    
+def addcontestant():
+    form = AddContestant()
+    if form.validate_on_submit():
+        newForm = Candidates(name=form.name.data, age=form.age.data, description=form.description.data, image_file="form.picture.data")
+        db.session.add(newForm)
+        db.session.commit()
+        flash(f' ' + form.name.data + 'has been added successsfully', 'success')
+        return redirect(url_for('home'))
+    return render_template('addcontestant.html', form=form)
+
 
 @app.route("/delete/<int:post_id>")
 def delete(post_id):
@@ -103,6 +120,15 @@ def delete(post_id):
     flash(f'Your post has been deleted','danger')
     print(post)
     return redirect(url_for('adminPosts'))
+
+@app.route("/deletecandidate/<int:candidate_id>")
+def deleteCandidate(candidate_id):
+    candidate = Candidates.query.get_or_404(candidate_id)
+    db.session.delete(candidate)
+    db.session.commit()
+    flash(f'Your post has been deleted','danger')
+    print(candidate)
+    return redirect(url_for('adminCandidates'))
 
 
 @app.route("/edit/<int:post_id>", methods=['GET','POST'])
@@ -125,6 +151,29 @@ def edit(post_id):
             print(post)
     return render_template('editpost.html', form=form, title=post.id, post=post)
 
+# Candidate Edit
+@app.route("/editCandidate/<int:candidate_id>", methods=['GET','POST'])
+def editCandidate(candidate_id):
+    form = Candidates()
+    candidate = Candidates.query.get_or_404(candidate_id)
+    print(candidate_id)
+    if request.method == 'GET':
+        form.name.data = candidate.name
+        form.description.data = candidate.description
+        form.age.data = candidate.age
+    elif request.method == 'POST':
+        print("Post ")
+        if form.validate_on_submit(): 
+            candidate.name = form.title.data
+            candidate.description = form.content.data
+            db.session.commit()
+            flash(f'Your post has been editted succesfully','success')
+            return redirect(url_for('adminCandidates'))
+            print(post)
+    return render_template('editcandidate.html', form=form, title=post.id, post=post)
+
+
+
 @app.route('/updates')
 def updates(): 
     posts = Posts.query.all()
@@ -135,9 +184,10 @@ def updates():
 def faceofcu():
     return render_template('faceOfCu.html')
 
-@app.route("/fpreview")
-def fpreview():
-    return render_template('faceofcupreview.html')
+@app.route("/fpreview/<int:id>")
+def fpreview(id):
+    candidate = Candidates.query.get_or_404(id)
+    return render_template('faceofcupreview.html', candidate=candidate)
 
 
 @app.route("/payment")
@@ -155,7 +205,9 @@ def thanks():
     message = "Your payment was successful?"
     sender_id = "PrestoSl" #11 Characters maximum
     send_sms(api_key,phone,message,sender_id)
-    return render_template('thankyou.html')
+    flash(f'Your vote has been successful')
+    return redirect(url_for('home'))
+    # return render_template('thankyou.html')
     
     
 def send_sms(api_key,phone,message,sender_id):
@@ -203,6 +255,11 @@ def feedback():
 def adminPosts():
     posts = Posts.query.all()
     return render_template('posts.html', posts=posts)
+
+@app.route("/admin/candidates")
+def adminCandidates():
+    candidates = Candidates.query.all()
+    return render_template('candidates.html', candidates=candidates)
 
 @app.route("/addpost", methods=['GET','POST'])
 def addpost():

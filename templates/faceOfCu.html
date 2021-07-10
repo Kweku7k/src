@@ -71,40 +71,21 @@
 <br/>
 <h6 class="text-muted"><b>CANDIDATES</b></h6>
 
+{% for candidate in candidates %}
 <div class="votingCard">
     <div class="votingEllipse" style="background-color: transparent; margin-bottom: 0;">
         <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" style="overflow: hidden; border-radius: 50%;" width=100%>
     </div> 
 <div style="margin-left: 10px; width:70% ">
-        <h6 style="margin-bottom: 0;"><b>Nana Kweku Adumatta</b></h6>
-        <h6 style="margin-bottom: 0;" class="text-muted">Pharmacy</h6>    
+        <h6 style="margin-bottom: 0;"><b>{{candidate.name}}</b></h6>
+        <h6 style="margin-bottom: 0;" class="text-muted">{{candidate.age}}</h6>    
 </div>
-<button class="votebutton">Vote</button>
-</div>
-
-<div class="votingCard">
-    <div class="votingEllipse" style="background-color: transparent; margin-bottom: 0;">
-        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" style="overflow: hidden; border-radius: 50%;" width=100%>
-    </div> 
-<div style="margin-left: 10px; width:70% ">
-        <h6 style="margin-bottom: 0;"><b>Nana Kweku Adumatta</b></h6>
-        <h6 style="margin-bottom: 0;" class="text-muted">Pharmacy</h6>    
-</div>
-<a href="{{url_for("fpreview")}}">
+<a href='{{url_for("fpreview", id = candidate.id)}}'>
     <button class="votebutton">Vote</button>
 </a>
 </div>
+{% endfor %}
 
-<div class="votingCard">
-    <div class="votingEllipse" style="background-color: transparent; margin-bottom: 0;">
-        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" style="overflow: hidden; border-radius: 50%;" width=100%>
-    </div> 
-<div style="margin-left: 10px; width:70% ">
-        <h6 style="margin-bottom: 0;"><b>Nana Kweku Adumatta</b></h6>
-        <h6 style="margin-bottom: 0;" class="text-muted">Pharmacy</h6>    
-</div>
-<button class="votebutton">Vote</button>
-</div>
 
 </div>
 </div>

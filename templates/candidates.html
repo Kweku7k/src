@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container">
+    <br>
+    <h6>Hello, Welcome</h6>
+    <h4><b>All Your Candidates</b></h4>
+<br>
+    <!-- <div class="row">  -->
+        <!-- <div class="col-md-4"> -->
+            {% for candidate in candidates %}
+            <div class="postCard">
+                <a href="{{url_for('editCandidate', candidate_id=candidate.id)}}">
+
+                <div>
+                    <h5 class="text">{{candidate.age}}</h5>
+                    <h6 class="text-muted">{{candidate.age}}</h6>
+                </div>
+                <div>
+                    <a href="{{url_for('deleteCandidate', candidate_id=candidate.id)}}">
+
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+        <!-- </div> -->
+
+        
+    <!-- </div> -->
+</div>
+{% endblock %}

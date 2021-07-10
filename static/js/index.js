@@ -12,7 +12,8 @@ function payWithPaystack() {
 
     callback: function(response) {
         console.log("Payment Successful")
-        window.location.replace("http://stackoverflow.com");
+        console.log(response)
+        window.location.href("www.centralsrc.com/thanks");
       //this happens after the payment is completed successfully
       var reference = response.reference;
       alert('Payment complete! Reference: ' + reference);

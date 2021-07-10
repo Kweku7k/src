@@ -12,6 +12,14 @@ class AddPostForm(FlaskForm):
     submit = SubmitField()
 
 
+class AddContestant(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    age = StringField('Age', validators=[DataRequired()])
+    description = StringField('Description', widget=TextArea(), validators=[DataRequired()])
+    picture = FileField('Add a picture', validators=[ FileAllowed(['jpg', 'png','jpeg'])])
+    submit = SubmitField()
+
+
 class RegistrationForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     phone = StringField('Phone', validators=[DataRequired(), Length(min=10, max=15, message="Your phone number should be more than 10 digits and less than 15")])
