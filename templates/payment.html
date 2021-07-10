@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body onload="payWithPaystack()">
     <form id="paymentForm">
         <div class="form-group">
           <label for="email">Email Address</label>
@@ -30,8 +30,13 @@
       </form>
       <script src="https://js.paystack.co/v1/inline.js"></script> 
     <script type="text/javascript" src="{{url_for("static", filename="js/index.js")}}"></script>
-    <!-- <link rel="stylesheet" href="{{url_for("static", filename="css/style.css")}}"> -->
 
+<script>
+window.onload = function(){
+  payWithPaystack()
+    console.log("sdfghjk");
+  }
+</script>
 
 </body>
 </html>

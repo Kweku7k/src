@@ -10,6 +10,10 @@ from flask_uploads import configure_uploads, IMAGES, UploadSet
 from PIL import Image
 import os
 from flask_migrate import Migrate
+import urllib.request, urllib.parse
+import urllib
+import secrets
+import os
 
 app=Flask(__name__)
 db = SQLAlchemy(app)
@@ -38,6 +42,21 @@ class Posts(db.Model):
     
     def __repr__(self):
         return f"Posts('{self.id}', '{self.title}')"
+
+class Candidates(db.Model):
+    tablename = ['Posts']
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    description = db.Column(db.String)
+    age = db.Column(db.String)
+    # instagram = db.Column( default=datetime.utcnow)
+    votes = db.Column(db.String)
+    image_file = db.Column(db.String(200), default='default.png')
+    
+    def __repr__(self):
+        return f"Candidates('{self.id}', '{self.title}')"
+
 
 
 class Issue(db.Model):
@@ -129,7 +148,32 @@ def payment():
 def votes():
     return render_template('votes.html')
     
+@app.route("/thanks")
+def thanks():
+    api_key = "aniXLCfDJ2S0F1joBHuM0FcmH" #Remember to put your own API Key here
+    phone = "0545977791" #SMS recepient"s phone number
+    message = "Your payment was successful?"
+    sender_id = "PrestoSl" #11 Characters maximum
+    send_sms(api_key,phone,message,sender_id)
+    return render_template('thankyou.html')
     
+    
+def send_sms(api_key,phone,message,sender_id):
+    params = {"key":api_key,"to":phone,"msg":message,"sender_id":sender_id}
+    url = 'https://apps.mnotify.net/smsapi?'+ urllib.parse.urlencode(params)
+    content = urllib.request.urlopen(url).read()
+    print (content)
+    print (url)
+# @app.route('/msgtry', methods=['POST','GET'])
+def next():
+    api_key = "aniXLCfDJ2S0F1joBHuM0FcmH" #Remember to put your own API Key here
+    phone = "0545977791" #SMS recepient"s phone number
+    message = "Your payment was successful?"
+    sender_id = "PrestoSl" #11 Characters maximum
+    send_sms(api_key,phone,message,sender_id)
+    return render_template('menu.html')
+
+
 @app.route('/admin')
 def admin():    
     return render_template('admin.html')

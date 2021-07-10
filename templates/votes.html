@@ -6,10 +6,15 @@
     <br/>
     <br/>
     <input class="amount" onchange="changeAmount()" type="number" style="font-size: 50px; width: 70vw; text-align: center; border: none; border-bottom: 1px solid black;" placeholder="Ghc" name="" id="">
-
+    <!-- <button style="border: none; background-color: red; color: red;">UP</button> -->
     <div style="margin-top: 20px;">
         <h6 class="text-muted">The number of votes are <span id="total" style="background-color: rgb(28, 202, 106); color:white; padding: 10px; border-radius: 5px;"> 0 </span></h6>
     </div>
+    <a href='{{url_for("payment")}}'>
+        <button class="button" onclick="send()">
+            Vote Now
+        </button>
+    </a>
 </div>
 
 <script>
@@ -21,6 +26,12 @@
         var append = amount * 100
         document.getElementById('total').innerHTML = append
         console.log(append)
+    }
+
+    function send(){
+        console.log("The amount is " + document.getElementsByClassName('amount')[0].value)
+        localStorage.setItem("amount", document.getElementsByClassName('amount')[0].value)
+        // console.log("Item set " + localStorage.getItem("amount"))
     }
     
 </script>
