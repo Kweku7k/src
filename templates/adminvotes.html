@@ -8,29 +8,30 @@
             <h6>Hello, Welcome</h6>
             <h4><b>All Your Candidates</b></h4>
         </div>
-        <a href='{{url_for("addcontestant")}}'>
-            <button class="button">Add Candidate</button>
+        <a href='{{url_for("adminCandidates")}}'>
+            <button class="button">Back To Candidates</button>
         </a>
         
-        <a href='{{url_for("adminvotes")}}'>
+        <!-- <a href='{{url_for("adminvotes")}}'>
         <button class="button">View Votes</button>
-        </a>    
+        </a>     -->
     </div>
 <br>
     <!-- <div class="row">  -->
         <!-- <div class="col-md-4"> -->
             {% for candidate in candidates %}
             <div class="postCard">
-                <a href="{{url_for('editCandidate', candidate_id=candidate.id)}}">
+                <a href="#">
 
                 <div>
                     <h5 class="text">{{candidate.name}}</h5>
-                    <h6 class="text-muted">{{candidate.age}}</h6>
+                    <!-- <h6 class="text-muted">{{candidate.votes}}</h6> -->
                 </div>
                 <div>
-                    <a href="{{url_for('deleteCandidate', candidate_id=candidate.id)}}">
+                    <a href="#">
 
-                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <h6 class="text-muted">{{candidate.votes}}</h6>
+
                     </a>
                 </div>
                 </a>

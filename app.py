@@ -153,7 +153,7 @@ def edit(post_id):
 # Candidate Edit
 @app.route("/editCandidate/<int:candidate_id>", methods=['GET','POST'])
 def editCandidate(candidate_id):
-    form = Candidates()
+    form = AddContestant()
     candidate = Candidates.query.get_or_404(candidate_id)
     print(candidate_id)
     if request.method == 'GET':
@@ -163,13 +163,12 @@ def editCandidate(candidate_id):
     elif request.method == 'POST':
         print("Post ")
         if form.validate_on_submit(): 
-            candidate.name = form.title.data
+            candidate.name = form.name.data
             candidate.description = form.content.data
             db.session.commit()
             flash(f'Your post has been editted succesfully','success')
             return redirect(url_for('adminCandidates'))
-            print(post)
-    return render_template('editcandidate.html', form=form, title=post.id, post=post)
+    return render_template('editcandidate.html', form=form, candidate=candidate, title=post.id, post=post)
 
 
 
@@ -210,6 +209,22 @@ def thanks(id):
     sender_id = "PrestoSl" #11 Characters maximum
     send_sms(api_key,phone,message,sender_id)
     flash(f'A new vote has been casted for ' + user.name,'success')
+    return redirect(url_for('home'))
+    # return render_template('thankyou.html')
+       
+@app.route("/nothanks/<int:id>/<int:amount>")
+def nothanks(id, amount):
+    user = Candidates.query.get_or_404(id)
+    print(user.votes)
+    user.votes = int(user.votes) + 1 
+    db.session.commit()
+    print("User Votes = " + str(user.votes))
+    api_key = "aniXLCfDJ2S0F1joBHuM0FcmH" #Remember to put your own API Key here
+    phone = "0545977791" #SMS recepient"s phone number
+    message = str(amount) + ' votes(s) was being attempted to cast for ' + user.name
+    sender_id = "PrestoSl" #11 Characters maximum
+    send_sms(api_key,phone,message,sender_id)
+    flash(f'' + str(amount) + ' votes(s) was being attempted to cast for ' + user.name,'success')
     return redirect(url_for('home'))
     # return render_template('thankyou.html')
     
@@ -264,6 +279,13 @@ def adminPosts():
 def adminCandidates():
     candidates = Candidates.query.all()
     return render_template('candidates.html', candidates=candidates)
+
+
+@app.route("/admin/votes")
+def adminvotes():
+    candidates = Candidates.query.all()
+    return render_template('adminvotes.html', candidates=candidates)
+
 
 @app.route("/addpost", methods=['GET','POST'])
 def addpost():

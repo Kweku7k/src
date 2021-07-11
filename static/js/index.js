@@ -13,15 +13,18 @@ function payWithPaystack() {
     callback: function(response) {
         console.log("Payment Successful")
         console.log(response)
-        window.location.href("www.centralsrc.com/thanks/1");
-      //this happens after the payment is completed successfully
-      var reference = response.reference;
-      alert('Payment complete! Reference: ' + reference);
+        console.log(localStorage.getItem("userId"))
+        window.location.href = "/thanks/" + localStorage.getItem("userId");
+
+
+        //this happens after the payment is completed successfully
+        var reference = response.reference;
+        // alert('Payment complete! Reference: ' + reference);
       // Make an AJAX call to your server with the reference to verify the transaction
     },
     onClose: function() {
       alert('Transaction was not completed, window closed.');
-      window.location.href = "http://localhost:5000/thanks/1";
+      window.location.href = "/nothanks/" + localStorage.getItem("userId") + "/" + localStorage.getItem("amount");
     },
   });
   handler.openIframe();
