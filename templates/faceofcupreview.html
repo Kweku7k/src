@@ -16,14 +16,14 @@
     </div>  
     <div class="container">
         <br/>
-        <h6 class="text-muted">No. {{candidate.id}}</h6>
-        <h6><b>{{candidate.name}}</b></h6>
+        <h6  class="text-muted">No. <span id="candidateId">{{candidate.id}}</span></h6>
+        <h6 id="candidateName"><b>{{candidate.name}}</b></h6>
         <h6 class="text-muted">Age. {{candidate.age}}</h6>
         <!-- <br/> -->
         <p>{{candidate.description}}</p>
     
 <br/>
-<h6 class="text-muted"><b>NANA KWEKU ADUMATTA</b></h6>
+<h6 class="text-muted"><b>{{candidate.name.upper()}}</b></h6>
         <div class="scrolling-wrapper-flexbox">
 
     <div style="margin-right: 10px; border-radius: 10px;">
@@ -52,12 +52,20 @@
 <div style="position: fixed; bottom: 10px; width: 100%;">    
     <div style="text-align: center;">
         <a href='{{url_for("votes")}}'>
-            <button class="button" style="margin: auto;">Vote For Me</button>
+            <button class="button" style="margin: auto;" onclick="voteNow()">Vote For Me</button>
         </a>
     </div>
 </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
+    <script>
+        function voteNow(){
+            userId = document.getElementById('candidateId').innerText
+            userName = document.getElementById('candidateName').innerText
+            localStorage.setItem("userId", userId)
+
+        }
+    </script>
 </body>
 </html>

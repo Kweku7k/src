@@ -13,7 +13,7 @@ function payWithPaystack() {
     callback: function(response) {
         console.log("Payment Successful")
         console.log(response)
-        window.location.href("www.centralsrc.com/thanks");
+        window.location.href("www.centralsrc.com/thanks/1");
       //this happens after the payment is completed successfully
       var reference = response.reference;
       alert('Payment complete! Reference: ' + reference);
@@ -21,7 +21,7 @@ function payWithPaystack() {
     },
     onClose: function() {
       alert('Transaction was not completed, window closed.');
-      window.location.href = "http://localhost:5000/thanks";
+      window.location.href = "http://localhost:5000/thanks/1";
     },
   });
   handler.openIframe();
