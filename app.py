@@ -86,7 +86,6 @@ class Feedback(db.Model):
 def home():
     candidates = Candidates.query.all()
     return render_template('faceofcu.html', candidates=candidates)
-
 # Default Config
 # @app.route('/',methods=['GET','POST'])
 # def home():
