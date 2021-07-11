@@ -3,8 +3,15 @@
 {% block body %}
 <div class="container">
     <br>
-    <h6>Hello, Welcome</h6>
-    <h4><b>All Your Candidates</b></h4>
+    <div style="display:'flex">
+        <div>
+            <h6>Hello, Welcome</h6>
+            <h4><b>All Your Candidates</b></h4>
+        </div>
+        <a href='{{url_for("addcontestant")}}'>
+            <button class="button">Add contestant</button>
+        </a>
+    </div>
 <br>
     <!-- <div class="row">  -->
         <!-- <div class="col-md-4"> -->

@@ -107,7 +107,7 @@ def addcontestant():
         db.session.add(newForm)
         db.session.commit()
         flash(f' ' + form.name.data + 'has been added successsfully', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('adminCandidates'))
     return render_template('addcontestant.html', form=form)
 
 
