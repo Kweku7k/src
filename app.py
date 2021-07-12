@@ -199,8 +199,6 @@ def votes():
 def thanks(id, amount):
     user = Candidates.query.get_or_404(id)
     print(user.votes)
-    # if user.votes == 'None':
-    #     user.votes = 0
     user.votes = user.votes + amount
     db.session.commit()
     print("User Votes = " + str(user.votes))
@@ -215,13 +213,8 @@ def thanks(id, amount):
        
 @app.route("/nothanks/<int:id>/<int:amount>")
 def nothanks(id, amount):
-    user = Candidates.query.get_or_404(id)
-    # if type(user.votes) != int:
-    #     print("None Type Please")
-    #     user.votes = 
-    # user.votes = user.votes + 1 
+    user = Candidates.query.get_or_404(id) 
     print(user.votes)
-    # db.session.commit()
     print("User Votes = " + str(user.votes))
     api_key = "aniXLCfDJ2S0F1joBHuM0FcmH" #Remember to put your own API Key here
     phone = "0545977791" #SMS recepient"s phone number

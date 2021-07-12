@@ -14,8 +14,7 @@ function payWithPaystack() {
         console.log("Payment Successful")
         console.log(response)
         console.log(localStorage.getItem("userId"))
-        window.location.href = "/thanks/" + localStorage.getItem("userId");
-
+        window.location.href = "/thanks/" + localStorage.getItem("userId") + "/" + localStorage.getItem("amount");
 
         //this happens after the payment is completed successfully
         var reference = response.reference;
@@ -28,4 +27,8 @@ function payWithPaystack() {
     },
   });
   handler.openIframe();
+}
+
+function test(){
+  window.location.href = "/thanks/" + localStorage.getItem("userId") + "/" + localStorage.getItem("amount")
 }
