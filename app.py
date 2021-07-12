@@ -1,3 +1,4 @@
+# from _typeshed import NoneType
 from flask import Flask,redirect,url_for,render_template,request
 from flask.helpers import flash
 from flask_sqlalchemy import SQLAlchemy
@@ -50,7 +51,7 @@ class Candidates(db.Model):
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
     age = db.Column(db.String)
-    votes = db.Column(db.String)
+    votes = db.Column(db.Integer, default = 0)
     image_file = db.Column(db.String(200), default='default.png')
     
     def __repr__(self):
@@ -170,8 +171,6 @@ def editCandidate(candidate_id):
             return redirect(url_for('adminCandidates'))
     return render_template('editcandidate.html', form=form, candidate=candidate, title=post.id, post=post)
 
-
-
 @app.route('/updates')
 def updates(): 
     posts = Posts.query.all()
@@ -196,35 +195,40 @@ def payment():
 def votes():
     return render_template('votes.html')
     
-@app.route("/thanks/<int:id>")
-def thanks(id):
+@app.route("/thanks/<int:id>/<int:amount>")
+def thanks(id, amount):
     user = Candidates.query.get_or_404(id)
     print(user.votes)
-    user.votes = int(user.votes) + 1 
+    # if user.votes == 'None':
+    #     user.votes = 0
+    user.votes = user.votes + amount
     db.session.commit()
     print("User Votes = " + str(user.votes))
     api_key = "aniXLCfDJ2S0F1joBHuM0FcmH" #Remember to put your own API Key here
     phone = "0545977791" #SMS recepient"s phone number
-    message = "A new vote has been casted for" + user.name
+    message = str(amount) + ' votes(s) have been cast for ' + user.name
     sender_id = "PrestoSl" #11 Characters maximum
     send_sms(api_key,phone,message,sender_id)
-    flash(f'A new vote has been casted for ' + user.name,'success')
+    flash(f'' + str(amount) + ' votes(s) have been cast for ' + user.name,'success')
     return redirect(url_for('home'))
     # return render_template('thankyou.html')
        
 @app.route("/nothanks/<int:id>/<int:amount>")
 def nothanks(id, amount):
     user = Candidates.query.get_or_404(id)
+    # if type(user.votes) != int:
+    #     print("None Type Please")
+    #     user.votes = 
+    # user.votes = user.votes + 1 
     print(user.votes)
-    user.votes = int(user.votes) + 1 
-    db.session.commit()
+    # db.session.commit()
     print("User Votes = " + str(user.votes))
     api_key = "aniXLCfDJ2S0F1joBHuM0FcmH" #Remember to put your own API Key here
     phone = "0545977791" #SMS recepient"s phone number
     message = str(amount) + ' votes(s) was being attempted to cast for ' + user.name
     sender_id = "PrestoSl" #11 Characters maximum
     send_sms(api_key,phone,message,sender_id)
-    flash(f'' + str(amount) + ' votes(s) was being attempted to cast for ' + user.name,'success')
+    flash(f'' + str(amount) + ' votes(s) was being attempted to cast for ' + user.name,'danger')
     return redirect(url_for('home'))
     # return render_template('thankyou.html')
     
