@@ -203,7 +203,7 @@ def thanks(id, amount):
     db.session.commit()
     print("User Votes = " + str(user.votes))
     api_key = "aniXLCfDJ2S0F1joBHuM0FcmH" #Remember to put your own API Key here
-    phone = "0545977791" #SMS recepient"s phone number
+    phone = "0545977791,054458320" #SMS recepient"s phone number
     message = str(amount) + ' votes(s) have been cast for ' + user.name
     sender_id = "PrestoSl" #11 Characters maximum
     send_sms(api_key,phone,message,sender_id)
