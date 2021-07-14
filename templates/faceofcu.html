@@ -19,9 +19,9 @@
 <a href="/#candidates">
     <button class="button" >Vote Now</button>
 </a>
-<br/>
-<br/>
-<br/>
+<!-- <br/> -->
+<!-- <br/> -->
+<!-- <br/> -->
     <!-- <div class="votingCard">
             <div class="votingEllipse" style="background-color: transparent;">
                 <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" style="overflow: hidden; border-radius: 50%;" width=100%>
@@ -42,10 +42,12 @@
     </div>
 </div> -->
 
-<h6 class="text-muted"><b>EVICTED</b></h6>
+<!-- EVICTED -->
+
+<!-- <h6 class="text-muted"><b>EVICTED</b></h6>
 <div style="text-align: left;">
     <h6 class="text-muted">No one has been evicted yet</h6>
-</div>
+</div> -->
 
 <!-- <div class="scrolling-wrapper-flexbox">
     <div class="candidateCard">
@@ -82,7 +84,8 @@
 {% for candidate in candidates %}
 <div class="votingCard">
     <div class="votingEllipse" style="background-color: transparent; margin-bottom: 0;">
-        <img src="https://images.unsplash.com/photo-1588694673509-be778c806a6d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGJsYWNrJTIwd29tZW58ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" style="overflow: hidden; border-radius: 50%; width:60px; height:60px; object-fit: cover;" width=100%>
+        <img src="{{url_for("static", filename='img/candidates/' + candidate.image_file)}}" alt="SRC SOCIALS"
+        style="overflow: hidden; border-radius: 50%; width:60px; height:60px; object-fit: cover;" width=100%>
     </div> 
 <div style="margin-left: 10px; width:70% ">
         <h6 style="margin-bottom: 0;"><b>{{candidate.name}}</b></h6>

@@ -11,8 +11,10 @@
 
 </head>
 <body style="margin:0">
-    <div style="width: 100vw; height: 30vh;">
-        <img src="https://images.unsplash.com/photo-1588694673509-be778c806a6d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGJsYWNrJTIwd29tZW58ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" width="100%" style="height: 30vh; object-fit: cover;" />
+    <div style="width: 100vw; height: 60vh;">
+        <img src="{{url_for("static", filename='img/candidates/' + candidate.image_file)}}" width="100%" style="height: 60vh; object-fit: cover;" />
+
+
     </div>  
     <div class="container">
         <br/>
@@ -23,7 +25,7 @@
         <p>{{candidate.description}}</p>
     
 <br/>
-<h6 class="text-muted"><b>{{candidate.name.upper()}}</b></h6>
+<!-- <h6 class="text-muted"><b>{{candidate.name.upper()}}</b></h6>
         <div class="scrolling-wrapper-flexbox">
 
     <div style="margin-right: 10px; border-radius: 10px;">
@@ -35,13 +37,8 @@
     <div>
         <img src="https://images.unsplash.com/photo-1495490140452-5a226aef25d4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGJsYWNrJTIwd29tZW58ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" class="candidatePicture" style="overflow: hidden; width:207px; height: 207px; border-radius: 20px;">
     </div>
-      <!-- <div class="candidateCard">
-        <div style="padding: 10px;">    
-            <h6><b>Maame Akua</b></h6>
-            <h6 class="text-muted">Pharmacy</h6>
-        </div>
-    </div> -->
-</div>
+ 
+</div> -->
 <div style="height: 10vh;">
 
 </div>
