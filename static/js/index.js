@@ -3,12 +3,15 @@ paymentForm.addEventListener('submit', payWithPaystack, false);
 function payWithPaystack() {
   var amount = localStorage.getItem('amount')
   console.log(amount) 
+  var userId = localStorage.getItem('userId')
+  console.log(userId) 
   
   var handler = PaystackPop.setup({
     key: 'pk_live_648228b4d09ff7a593456bae534339f0b58cd37f',
     email: 'mr.adumatta@gmail.com',
     amount: amount * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
     currency: 'GHS', // Use GHS for Ghana Cedis or USD for US Dollars
+    ref: userId + 000 +''+Math.floor((Math.random() * 100000) + 1), // Use GHS for Ghana Cedis or USD for US Dollars
 
     callback: function(response) {
         console.log("Payment Successful")
