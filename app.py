@@ -206,7 +206,7 @@ def thanks(id, amount):
     phone = "0545977791, 0544588320" #SMS recepient"s phone number
     message = str(amount) + ' votes(s) have been cast for ' + user.name
     sender_id = "PrestoSl" #11 Characters maximum
-    send_sms(api_key,phone,message,sender_id)
+    # send_sms(api_key,phone,message,sender_id)
     flash(f'' + str(amount) + ' votes(s) have been cast for ' + user.name,'success')
     return redirect(url_for('home'))
     # return render_template('thankyou.html')
