@@ -7,7 +7,7 @@ function payWithPaystack() {
   console.log(userId) 
   var userName = localStorage.getItem('userName')
   var slemail = userName.replace(/\s+/g, '');
-  email = slemail+"@prestosl.com"
+  email = "mr.adumatta+"+slemail+"@gmail.com"
   console.log(userName)
   console.log(email)
 
