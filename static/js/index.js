@@ -5,10 +5,17 @@ function payWithPaystack() {
   console.log(amount) 
   var userId = localStorage.getItem('userId')
   console.log(userId) 
+  var userName = localStorage.getItem('userName')
+  var slemail = userName.replace(/\s+/g, '');
+  email = slemail+"@prestosl.com"
+  console.log(userName)
+  console.log(email)
+
+  
   
   var handler = PaystackPop.setup({
     key: 'pk_live_648228b4d09ff7a593456bae534339f0b58cd37f',
-    email: 'mr.adumatta@gmail.com',
+    email: email,
     amount: amount * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
     currency: 'GHS', // Use GHS for Ghana Cedis or USD for US Dollars
     ref: userId + 000 +''+Math.floor((Math.random() * 100000) + 1), // Use GHS for Ghana Cedis or USD for US Dollars

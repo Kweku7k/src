@@ -85,6 +85,15 @@ class Feedback(db.Model):
         return f"Feedback('{self.id}', '{self.title}')"
 
 
+# functions
+# 1856913067:AAF6ZpmhgQ8BcTZASwlyaeELB0V5CaXVZZs
+
+def sendtelegram(params):
+    url = "https://api.telegram.org/bot1856913067:AAF6ZpmhgQ8BcTZASwlyaeELB0V5CaXVZZs/sendMessage?chat_id=-594997151&text=" + urllib.parse.quote(params)
+    content = urllib.request.urlopen(url).read()
+    print(content)
+    return content
+
 @app.route('/',methods=['GET','POST'])
 def home():
     candidates = Candidates.query.all()
@@ -208,7 +217,8 @@ def thanks(id, amount):
     phone = "0545977791, 0544588320" #SMS recepient"s phone number
     message = str(amount) + ' votes(s) have been cast for ' + user.name
     sender_id = "PrestoSl" #11 Characters maximum
-    send_sms(api_key,phone,message,sender_id)
+    # send_sms(api_key,phone,message,sender_id)
+    sendtelegram(message)
     flash(f'' + str(amount) + ' votes(s) have been cast for ' + user.name,'success')
     return redirect(url_for('home'))
     # return render_template('thankyou.html')
