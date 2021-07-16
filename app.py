@@ -218,6 +218,7 @@ def thanks(id, amount):
     message = str(amount) + ' votes(s) have been cast for ' + user.name
     sender_id = "PrestoSl" #11 Characters maximum
     # send_sms(api_key,phone,message,sender_id)
+    amount = round(amount / 0.5)
     sendtelegram(message)
     flash(f'' + str(amount) + ' votes(s) have been cast for ' + user.name,'success')
     return redirect(url_for('home'))
