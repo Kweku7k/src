@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField
+from wtforms.fields.core import IntegerField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, ValidationError
 from flask_wtf.file import FileField, FileAllowed
 from wtforms.widgets import TextArea
@@ -16,7 +17,8 @@ class AddContestant(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     age = StringField('Age', validators=[DataRequired()])
     description = StringField('Description', widget=TextArea(), validators=[DataRequired()])
-    picture = FileField('Add a picture', validators=[ FileAllowed(['jpg', 'png','jpeg'])])
+    picture = StringField('Add a picture')
+    votes = IntegerField('Votes')
     submit = SubmitField()
 
 

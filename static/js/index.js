@@ -25,7 +25,7 @@ function payWithPaystack() {
       // Make an AJAX call to your server with the reference to verify the transaction
     },
     onClose: function() {
-      alert('Transaction was not completed, window closed.');
+      alert('Transaction was not completed,.');
       window.location.href = "/nothanks/" + localStorage.getItem("userId") + "/" + localStorage.getItem("amount");
     },
   });

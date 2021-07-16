@@ -15,6 +15,7 @@ import urllib.request, urllib.parse
 import urllib
 import secrets
 import os
+import psycopg2
 
 app=Flask(__name__)
 db = SQLAlchemy(app)
@@ -25,7 +26,8 @@ migrate = Migrate(app, db)
 
 app.config['SECRET_KEY'] = 'll91628bb0b13ce0c676d32e2vsba245'
 app.config['UPLOADED_IMAGES_DEST'] = 'static/uploads/images'
-app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///test.db'
+# app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///test.db'
+app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql://brseclrcjduofa:67eeffeaac88d1f6427e5857d31ff197571bd041dc71c54c2896e56fd5a8f74a@ec2-54-227-246-76.compute-1.amazonaws.com:5432/d74p8vghnkk2d7'
 
 # Takes the name of the file and the extensions
 images = UploadSet('images', IMAGES)
@@ -104,7 +106,7 @@ def post(id):
 def addcontestant():
     form = AddContestant()
     if form.validate_on_submit():
-        newForm = Candidates(name=form.name.data, age=form.age.data, description=form.description.data, image_file="form.picture.data")
+        newForm = Candidates(name=form.name.data, age=form.age.data, description=form.description.data, image_file=form.picture.data, votes=form.votes.data)
         db.session.add(newForm)
         db.session.commit()
         flash(f' ' + form.name.data + 'has been added successsfully', 'success')
@@ -165,11 +167,11 @@ def editCandidate(candidate_id):
         print("Post ")
         if form.validate_on_submit(): 
             candidate.name = form.name.data
-            candidate.description = form.content.data
+            candidate.description = form.description.data
             db.session.commit()
             flash(f'Your post has been editted succesfully','success')
             return redirect(url_for('adminCandidates'))
-    return render_template('editcandidate.html', form=form, candidate=candidate, title=post.id, post=post)
+    return render_template('editcandidate.html', form=form, candidate=candidate, post=post)
 
 @app.route('/updates')
 def updates(): 
