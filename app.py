@@ -26,8 +26,8 @@ migrate = Migrate(app, db)
 
 app.config['SECRET_KEY'] = 'll91628bb0b13ce0c676d32e2vsba245'
 app.config['UPLOADED_IMAGES_DEST'] = 'static/uploads/images'
-# app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///test.db'
-app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql://brseclrcjduofa:67eeffeaac88d1f6427e5857d31ff197571bd041dc71c54c2896e56fd5a8f74a@ec2-54-227-246-76.compute-1.amazonaws.com:5432/d74p8vghnkk2d7'
+app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///test.db'
+# app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql://brseclrcjduofa:67eeffeaac88d1f6427e5857d31ff197571bd041dc71c54c2896e56fd5a8f74a@ec2-54-227-246-76.compute-1.amazonaws.com:5432/d74p8vghnkk2d7'
 
 # Takes the name of the file and the extensions
 images = UploadSet('images', IMAGES)
@@ -206,7 +206,7 @@ def payment():
 def votes():
     return render_template('votes.html')
     
-@app.route("/thanks/<int:id>/<int:amount>")
+@app.route("/thanks/<int:id>/<float:amount>")
 def thanks(id, amount):
     user = Candidates.query.get_or_404(id)
     print(user.votes)
