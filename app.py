@@ -172,11 +172,13 @@ def editCandidate(candidate_id):
         form.name.data = candidate.name
         form.description.data = candidate.description
         form.age.data = candidate.age
+        form.votes.data = candidate.votes
     elif request.method == 'POST':
         print("Post ")
         if form.validate_on_submit(): 
             candidate.name = form.name.data
             candidate.description = form.description.data
+            candidate.votes = form.votes.data
             db.session.commit()
             flash(f'Your post has been editted succesfully','success')
             return redirect(url_for('adminCandidates'))
