@@ -208,7 +208,7 @@ def payment():
 def votes():
     return render_template('votes.html')
     
-@app.route("/thanks/<int:id>/<float:amount>")
+@app.route("/thanks/<int:id>/<int:amount>")
 def thanks(id, amount):
     user = Candidates.query.get_or_404(id)
     print(user.votes)
