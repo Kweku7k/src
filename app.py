@@ -299,6 +299,12 @@ def adminvotes():
     return render_template('adminvotes.html', candidates=candidates)
 
 
+@app.route("/public/votes")
+def publicvotes():
+    candidates = Candidates.query.all()
+    return render_template('adminvotes.html', candidates=candidates)
+
+
 @app.route("/addpost", methods=['GET','POST'])
 def addpost():
     form = AddPostForm()

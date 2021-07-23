@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container">
+    <br>
+    <div style="display:'flex">
+        <div>
+            <h6>Hello, Welcome</h6>
+            <h4><b>All Your Candidates</b></h4>
+        </div>
+
+    </div>
+<br>
+
+            {% for candidate in candidates %}
+            <div class="postCard">
+
+
+                <div>
+                    <h5 class="text">{{candidate.name}}</h5>
+                </div>
+                <div>
+
+
+                        <h6 class="text-muted">{{candidate.votes}}</h6>
+
+
+                </div>
+
+            </div>
+            {% endfor %}
+
+</div>
+{% endblock %}
