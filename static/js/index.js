@@ -18,7 +18,7 @@ function payWithPaystack() {
     email: email,
     amount: amount * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
     currency: 'GHS', // Use GHS for Ghana Cedis or USD for US Dollars	
-    // subaccount: "ACCT_jpwt9480ebqz0b8",
+    subaccount: "ACCT_jpwt9480ebqz0b8",
     ref: userId + 000 +''+Math.floor((Math.random() * 100000) + 1), // Use GHS for Ghana Cedis or USD for US Dollars
 
     callback: function(response) {
