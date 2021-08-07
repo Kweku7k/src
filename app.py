@@ -58,7 +58,9 @@ class Candidates(db.Model):
     age = db.Column(db.String)
     votes = db.Column(db.Integer, default = 0)
     image_file = db.Column(db.String(200), default='default.png')
-    
+    updatedVotes = db.Column(db.Integer, default = 0)
+
+
     def __repr__(self):
         return f"Candidates('{self.id}', '{self.name}')"
 
@@ -86,6 +88,19 @@ class Feedback(db.Model):
     
     def __repr__(self):
         return f"Feedback('{self.id}', '{self.title}')"
+
+class Votes(db.Model):
+    tablename = ['Posts']
+
+    id = db.Column(db.Integer, primary_key=True)
+    candidateId = db.Column(db.String, nullable=False)
+    name = db.Column(db.String)
+    amount = db.Column(db.String)
+    ref = db.Column(db.String)
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    def __repr__(self):
+        return f"Vote Ghc('{self.amount}', ' - {self.candidateId}')"
 
 
 # functions
@@ -211,12 +226,24 @@ def payment():
 def votes():
     return render_template('votes.html')
     
-@app.route("/thanks/<int:id>/<int:amount>")
-def thanks(id, amount):
+@app.route("/thanks/<int:id>/<int:amount>/<string:ref>")
+def thanks(id, amount, ref):
     user = Candidates.query.get_or_404(id)
     print(user.votes)
-    user.votes = user.votes + amount
+    print("amount-" + str(amount))
+    amount = amount / 100
+    print(ref)
+    print("amount-" + str(amount))
+    candidate = Candidates.query.get_or_404(id)
+    print(str(amount) + " votes have been added to " + str(candidate.updatedVotes) + "For " + str(candidate.name))
+    # user.votes = user.votes + amount
+    newVote = Votes(candidateId = id, amount=amount, ref=ref, name=candidate.name)
+    candidate.updatedVotes = candidate.updatedVotes + amount
+    print("Total of" + str(candidate.updatedVotes) )
+    db.session.add(newVote)
     db.session.commit()
+
+    
     print("User Votes = " + str(user.votes))
     api_key = "aniXLCfDJ2S0F1joBHuM0FcmH" #Remember to put your own API Key here
     phone = "0545977791, 0544588320" #SMS recepient"s phone number
@@ -224,6 +251,7 @@ def thanks(id, amount):
     sender_id = "PrestoSl" #11 Characters maximum
     # send_sms(api_key,phone,message,sender_id)
     amount = round(amount / 0.5)
+    
     sendtelegram(message)
     flash(f'' + str(amount) + ' votes(s) have been cast for ' + user.name,'success')
     return redirect(url_for('home'))
@@ -238,7 +266,7 @@ def nothanks(id, amount):
     phone = "0545977791" #SMS recepient"s phone number
     message = str(amount) + ' votes(s) was being attempted to cast for ' + user.name
     sender_id = "PrestoSl" #11 Characters maximum
-    send_sms(api_key,phone,message,sender_id)
+    # send_sms(api_key,phone,message,sender_id)
     flash(f'' + str(amount) + ' votes(s) was being attempted to cast for ' + user.name,'danger')
     return redirect(url_for('home'))
     # return render_template('thankyou.html')
@@ -295,11 +323,49 @@ def adminCandidates():
     candidates = Candidates.query.all()
     return render_template('candidates.html', candidates=candidates)
 
+@app.route("/admin/votes/logs")
+def adminvoteslogs():
+    votes = Votes.query.order_by(Votes.id.desc()).all()
+    return render_template('adminvoteslogs.html', votes=votes)
+ 
 
 @app.route("/admin/votes")
 def adminvotes():
     candidates = Candidates.query.all()
-    return render_template('adminvotes.html', candidates=candidates)
+    votes = Votes.query.all()
+    totalamount = 0
+    totaloldvotes = 0
+
+    # Calculate the votes in db before logs
+    for old_vote in candidates:
+        totaloldvotes = totaloldvotes + old_vote.votes
+    print("Total of old votes " + str(totaloldvotes))
+    # Calculate votes from logs 
+    for vote in votes:
+        totalamount = totalamount + float(vote.amount)
+    totalamount = totaloldvotes + totalamount
+
+    print("Total Amount is " + str( totalamount))
+
+    # for loop to assign votes to candidates
+    for candidate in candidates:
+        # for each candidates
+        print(candidate)
+        candidateVotes = Votes.query.filter_by(candidateId = str(candidate.id)).all()
+        candidateTotalVotes = 0
+        # Calculate the total votes
+        for vote in candidateVotes:
+            candidateTotalVotes = candidateTotalVotes + float(vote.amount)
+        
+        # candidateTotalVotes = candidateTotalVotes + candidate.votes
+        print("Total Votes for "  + candidate.name + " " + str(candidateTotalVotes))
+        candidate.updatedVotes = candidate.votes + candidateTotalVotes
+        db.session.commit()
+        print("------")
+
+        # print("All The Votes are" + str(votes))
+    print("Total amount of money recieved is " + str(totalamount))
+    return render_template('adminvotes.html', candidates=candidates, totalamount=totalamount)
 
 
 @app.route("/public/votes")

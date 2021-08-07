@@ -3,42 +3,82 @@
 {% block body %}
 <div class="container">
     <br>
-    <div style="display:'flex">
+    <!-- <div style="display:'flex'"> -->
         <div>
             <h6>Hello, Welcome</h6>
             <h4><b>All Your Candidates</b></h4>
         </div>
+<br/>
+
+<div style="display:flex; justify-content: space-between; flex-wrap: wrap;">
+    <div>
+        <h6>Total Amount</h6>
+        <h4><b>Ghc{{totalamount}}</b></h4>
+    </div>
+
+    <div>
+        <h6>Total Votes</h6>
+        <h4><b>{{totalamount *2}}</b></h4>
+    </div>
+
+    <div>
+        <h6>Payment Pending</h6>
+        <h4><b>Ghc{{totalamount - 1477}}</b></h4>
+    </div>
+
+    <div style="text-align: right;">
+        <h6>80%</h6>
+        {% set pending = totalamount - 1477 %}
+
+        <h4><b>Ghc{{pending * 0.8}}</b></h4>
+    </div>
+
+    <!-- <div>
+        <h6>Amount Recieved</h6>
+        <h4><b>Ghc{{totalamount}}</b></h4>
+    </div> -->
+</div>
+
+<!-- </div> -->
+        
+        <br/>
+        
         <a href='{{url_for("adminCandidates")}}'>
             <button class="button">Back To Candidates</button>
+        </a>
+
+        <br/>
+        <br/>
+
+        <a href='{{url_for("adminvotes")}}'>
+            <button class="button">Refresh Vote Count</button>
         </a>
         
         <!-- <a href='{{url_for("adminvotes")}}'>
         <button class="button">View Votes</button>
-        </a>     -->
-    </div>
-<br>
+        </a> -->
+<br/>
+<br/>
     <!-- <div class="row">  -->
         <!-- <div class="col-md-4"> -->
             {% for candidate in candidates %}
             <div class="postCard">
-                <a href="#">
-
                 <div>
                     <h5 class="text">{{candidate.name}}</h5>
                     <!-- <h6 class="text-muted">{{candidate.votes}}</h6> -->
                 </div>
                 <div>
                     <a href="#">
-
+                        <!-- <h6 class="text-muted">{{candidate.updatedVotes}}</h6> -->
                         <!-- <h6 class="text-muted">{{candidate.votes}}</h6> -->
-                        {% set highscore = candidate.votes * 2 %}
-                        <h6 class="text-muted">{{highscore}}</h6>
-
+                        {% set highscore =  candidate.updatedVotes * 2 %}
+                        <h6 class="text-muted">{{highscore }}</h6>
                     </a>
                 </div>
-                </a>
             </div>
             {% endfor %}
+
+    </div>
 
 </div>
 {% endblock %}

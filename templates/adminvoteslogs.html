@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container">
+    <br>
+    <!-- <div style="display:'flex'"> -->
+        <div>
+            <h6>Hello, Welcome</h6>
+            <h4><b>Vote Logs</b></h4>
+        </div>
+<br/>
+
+
+
+<!-- </div> -->
+        
+        <br/>
+        
+<br/>
+<br/>
+            {% for vote in votes %}
+            <div class="postCard">
+                <div>
+                    <h5 class="text">{{vote.candidateId}}. {{vote.name}}</h5>
+                    <h5 class="text">{{vote.date_created.strftime("%m/%d/%Y, %H:%M:%S")}}</h5>
+                </div>
+                <div style="text-align: right;">
+                    <a href="#">
+                        <h6 class="text-muted">{{vote.amount }}</h6>
+                        <h6 class="text-muted">{{vote.ref }}</h6>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+
+    </div>
+
+</div>
+{% endblock %}
