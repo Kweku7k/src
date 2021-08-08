@@ -115,6 +115,13 @@ def sendtelegram(params):
 @app.route('/',methods=['GET','POST'])
 def home():
     candidates = Candidates.query.all()
+    limitpost = Posts.query.order_by(Posts.id.desc()).limit(3).all()
+    print("The Posts" + str(limitpost)) 
+    return render_template('index.html', candidates=candidates, limitpost=limitpost)
+
+@app.route('/faceofcu',methods=['GET','POST'])
+def faceofcu():
+    candidates = Candidates.query.all()
     return render_template('faceofcu.html', candidates=candidates)
 # Default Config
 # @app.route('/',methods=['GET','POST'])
@@ -208,14 +215,13 @@ def updates():
     return render_template('updates.html', posts=posts)
 
 
-@app.route("/faceofcu")
-def faceofcu():
-    return render_template('faceOfCu.html')
+# @app.route("/faceofcu")
+# def faceofcu():
+#     return render_template('faceOfCu.html')
 
 @app.route("/fpreview/<int:id>")
 def fpreview(id):
     candidate = Candidates.query.get_or_404(id)
-    return render_template('faceofcupreview.html', candidate=candidate)
 
 
 @app.route("/payment")
