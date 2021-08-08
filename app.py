@@ -87,7 +87,7 @@ class Feedback(db.Model):
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
     
     def __repr__(self):
-        return f"Feedback('{self.id}', '{self.title}')"
+        return f"Feedback('{self.id}', '{self.phone}')"
 
 class Votes(db.Model):
     tablename = ['Posts']
@@ -257,7 +257,7 @@ def thanks(id, amount, ref):
     sender_id = "PrestoSl" #11 Characters maximum
     # send_sms(api_key,phone,message,sender_id)
     amount = round(amount / 0.5)
-    
+
     sendtelegram(message)
     flash(f'' + str(amount) + ' votes(s) have been cast for ' + user.name,'success')
     return redirect(url_for('home'))
@@ -315,9 +315,12 @@ def feedback():
         newFeedback = Feedback(phone=form.phone.data, feedback=form.feedback.data)
         db.session.add(newFeedback)
         db.session.commit()
+        sendtelegram(form.feedback.data)
         flash(f'Your feedback has been submitted successfully','success')
         return redirect(url_for('home'))
     return render_template('feedback.html', form=form)
+
+
 
 @app.route("/admin/posts")
 def adminPosts():

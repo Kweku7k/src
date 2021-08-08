@@ -43,6 +43,6 @@ class LoginForm(FlaskForm):
 
 class FeedbackForm(FlaskForm):
     phone = StringField('Phone')
-    feedback = StringField('Feedback', validators=[DataRequired()])
+    feedback = StringField('Feedback',widget=TextArea(), validators=[DataRequired()])
     submit = SubmitField('Submit')
     
