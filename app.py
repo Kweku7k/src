@@ -222,6 +222,7 @@ def updates():
 @app.route("/fpreview/<int:id>")
 def fpreview(id):
     candidate = Candidates.query.get_or_404(id)
+    return render_template('faceofcupreview.html', candidate=candidate)
 
 
 @app.route("/payment")
