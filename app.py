@@ -259,7 +259,7 @@ def thanks(id, amount, ref):
     # send_sms(api_key,phone,message,sender_id)
     amount = round(amount / 0.5)
 
-    sendtelegram(message)
+    # sendtelegram(message)
     flash(f'' + str(amount) + ' votes(s) have been cast for ' + user.name,'success')
     return redirect(url_for('home'))
     # return render_template('thankyou.html')
