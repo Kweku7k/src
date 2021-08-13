@@ -341,7 +341,7 @@ def adminvoteslogs():
 
 @app.route("/admin/votes")
 def adminvotes():
-    candidates = Candidates.query.all()
+    candidates = Candidates.query.order_by(Candidates.votes.desc()).all()
     votes = Votes.query.all()
     totalamount = 0
     totaloldvotes = 0
@@ -349,29 +349,29 @@ def adminvotes():
     # Calculate the votes in db before logs
     for old_vote in candidates:
         totaloldvotes = totaloldvotes + old_vote.votes
-    print("Total of old votes " + str(totaloldvotes))
+    print("Total votes " + str(totaloldvotes))
     # Calculate votes from logs 
-    for vote in votes:
-        totalamount = totalamount + float(vote.amount)
-    totalamount = totaloldvotes + totalamount
+    # for vote in votes:
+    #     totalamount = totalamount + float(vote.amount)
+    # totalamount = totaloldvotes + totalamount
 
-    print("Total Amount is " + str( totalamount))
+    # print("Total Amount is " + str( totalamount))
 
     # for loop to assign votes to candidates
-    for candidate in candidates:
-        # for each candidates
-        print(candidate)
-        candidateVotes = Votes.query.filter_by(candidateId = str(candidate.id)).all()
-        candidateTotalVotes = 0
-        # Calculate the total votes
-        for vote in candidateVotes:
-            candidateTotalVotes = candidateTotalVotes + float(vote.amount)
+    # for candidate in candidates:
+
+    #     print(candidate)
+    #     candidateVotes = Votes.query.filter_by(candidateId = str(candidate.id)).all()
+    #     candidateTotalVotes = 0
+
+    #     for vote in candidateVotes:
+    #         candidateTotalVotes = candidateTotalVotes + float(vote.amount)
         
-        # candidateTotalVotes = candidateTotalVotes + candidate.votes
-        print("Total Votes for "  + candidate.name + " " + str(candidateTotalVotes))
-        candidate.updatedVotes = candidate.votes + candidateTotalVotes
-        db.session.commit()
-        print("------")
+
+    #     print("Total Votes for "  + candidate.name + " " + str(candidateTotalVotes))
+    #     candidate.updatedVotes = candidate.votes + candidateTotalVotes
+    #     db.session.commit()
+    #     print("------")
 
         # print("All The Votes are" + str(votes))
     print("Total amount of money recieved is " + str(totalamount))
