@@ -33,13 +33,12 @@
         </a>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
 
         <div data-aos="fade-up" data-aos-delay="100">
 
         <div class="card">
             <div>
-                <!-- {{ url_for('static',filename='img/Fries-porn.png')}} -->
                 <img src="{{url_for("static", filename='uploads/images/' + "fcu.jpg")}}" alt="SRC SOCIALS" width="100%">
             </div>
             <div class="subcard">
@@ -50,25 +49,25 @@
             </div>
         </div>
     </div>
-    <!-- </a>     -->
-    </div>
+    </div> -->
         {% for post in limitpost %}
         <div class="col-md-4">
             <!-- <a href="{{url_for('post',id=post.id)}}"> -->
 
-            <div data-aos="fade-up" data-aos-delay="100">
+            <!-- <div data-aos="fade-up" data-aos-delay="100"> -->
 
-            <div class="card">
+            <div class="card" style="width: 100%;">
                 <div>
                     <!-- {{ url_for('static',filename='img/Fries-porn.png')}} -->
-                    <img src="{{url_for("static", filename='uploads/images/' + post.image_file)}}" alt="SRC SOCIALS" width="100%">
+                    <!-- <img src="{{url_for("static", filename='uploads/images/' + post.image_file)}}" alt="SRC SOCIALS" width="100%"> -->
+                    <img src="{{post.author}}" height="200px" style="object-fit: cover;" alt="SRC SOCIALS" width="100%">
                 </div>
                 <div class="subcard">
                     <h4>{{post.title}} <i class="fa fa-arrow-right" aria-hidden="true"></i></h4>
                     <h6 class="text-muted" style="font-weight: 100;">View More</h6>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
         <!-- </a>     -->
         </div>
         {% endfor %}
@@ -254,7 +253,7 @@
             <div class="col-md-3">
                 <h4>Contact Us</h4>
                 <h6>You can reach the SRC through our many plaforms. </h6>
-                <a style="color: white;" href="tel:0545977791"><h6><i class="fa fa-phone" aria-hidden="true"></i> SRC PRO</h6></a>
+                <a style="color: white;" href="tel:0505672569"><h6><i class="fa fa-phone" aria-hidden="true"></i> SRC PRO</h6></a>
             </div>
             
         </div>
