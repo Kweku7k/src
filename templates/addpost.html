@@ -46,9 +46,9 @@
       <!-- <h6 id="firebaseLink"></h6> -->
     <div id="submitButton" style="text-align: left;"  class="form-group disabled">
         <button class="button" style="background-color: #da2d2770;">Submit</button>
-        <!-- <button>
-            <div class="spinner-border"></div><span>Test</span>
-        </button> -->
+
+
+
     </div>
 
     <div class="form-group">
@@ -66,7 +66,7 @@
     // Push batch images to storage and store references in the database
     var pushImage = function (file) {
         document.getElementById('submitButton').innerHTML = `
-        <button class="button" style="background-color: #da2d2770;">Uploading Images</button>
+        <button class="button" style="background-color: #da2d2770;"><i class="fa fa-pause-circle-o" aria-hidden="true" style="color:'white'"></i>Uploading Images</button>
         `
 
        // var uid = firebase.auth().currentUser.uid;

@@ -325,7 +325,7 @@ def feedback():
 
 @app.route("/admin/posts")
 def adminPosts():
-    posts = Posts.query.all()
+    posts = Posts.query.order_by(Posts.id.desc()).all()
     return render_template('posts.html', posts=posts)
 
 @app.route("/admin/candidates")
@@ -390,7 +390,8 @@ def addpost():
     if form.validate_on_submit():
         # print(form.picture.data)
         if form.picture.data:
-            filename = images.save(form.picture.data)
+            pass
+            # filename = images.save(form.picture.data)
         else:
             filename = 'IneruuTrade.png'
         print(filename)

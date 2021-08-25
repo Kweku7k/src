@@ -175,6 +175,7 @@ section{
   .card {
     display: inline-block;
     margin-bottom: 10px;
+    width: 100%;
   }
 
 footer{

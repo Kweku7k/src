@@ -1,5 +1,9 @@
 {% extends "layout.html" %}
 
+{% block head %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+
 {% block body %}
 
 
@@ -9,17 +13,41 @@
             <div class="row">
                 <div class="col-md-6 ">
                     <h6 style="font-weight: 100;">WELCOME TO CU SRC</h6>
-                    <h1>SRC Information Portal</h1>
+                    <h1>Dear Students,</h1>
                     <p>We are here for you. You can find all the information concerning the school here. You can also contact us for any pressing information</p>
-                    <a href="#footer">
+                    <p>Study as if there is no tomorrow because if you keep putting off your studies, you will most likely be too late. Instead of focusing on what you can't do, consider what you can. Along the way, you'll gain confidence and master new skills. Rather than focusing on perfection, consider how much progress can be accomplished. It will be a lot less difficult. Never quit, no matter what always give it your all.
+
+                        All the best in your upcoming exams.</p>
+
+                        <h6><b>- President Nargeh</b></h6>
+                    <!-- <a href="#footer">
                         <button class="button">Contact us now</button>
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<!-- <div class="modal show" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Modal body text goes here.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
 
 <section id="new">
 <div class="container">
@@ -33,23 +61,7 @@
         </a>
     </div>
     <div class="row">
-        <!-- <div class="col-md-4">
 
-        <div data-aos="fade-up" data-aos-delay="100">
-
-        <div class="card">
-            <div>
-                <img src="{{url_for("static", filename='uploads/images/' + "fcu.jpg")}}" alt="SRC SOCIALS" width="100%">
-            </div>
-            <div class="subcard">
-                <h4>FaceOfCu </h4>
-                <a href="{{url_for("faceofcu")}}">
-                    <h6 style="font-weight: 100; color: teal;">Vote Here</h6>
-                </a>
-            </div>
-        </div>
-    </div>
-    </div> -->
         {% for post in limitpost %}
         <div class="col-md-4">
             <!-- <a href="{{url_for('post',id=post.id)}}"> -->
@@ -67,37 +79,9 @@
                     <h6 class="text-muted" style="font-weight: 100;">View More</h6>
                 </div>
             </div>
-        <!-- </div> -->
-        <!-- </a>     -->
+
         </div>
         {% endfor %}
-
-        <!-- <div class="col-md-4">
-            <div data-aos="fade-up" data-aos-delay="200">
-
-            <div class="card">
-                <img src="{{url_for("static", filename='img/social.png')}}" alt="SRC SOCIALS" width="100%">
-                <div class="subcard">
-                    <h4>Follow us on social media <i class="fa fa-arrow-right" aria-hidden="true"></i></h4>
-                    <h6 class="text-muted" style="font-weight: 100;">View More</h6>
-                </div>
-            </div>
-            <br/>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div data-aos="fade-up" data-aos-delay="300">
-
-            <div class="card">
-                <img src="{{url_for("static", filename='img/WuComFlyer2.png')}}" alt="SRC SOCIALS" width="100%">
-                <div class="subcard">
-                    <h4>Happy Womens Day<i class="fa fa-arrow-right" aria-hidden="true"></i></h4>
-                    <h6 class="text-muted" style="font-weight: 100;">View More</h6>
-                </div>
-            </div>
-            </div>
-        </div> -->
 
        
     </div>
@@ -227,6 +211,20 @@
     </div>
 </section>
 
+<div class="modal show fade" id="myModal">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3>Modal header</h3>
+    </div>
+    <div class="modal-body">
+        <p>One fine body…</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn">Close</a>
+        <a href="#" class="btn btn-primary">Save changes</a>
+    </div>
+</div>
+
 <footer id="footer">
     <div class="container">
         <div class="row">
@@ -248,6 +246,8 @@
                 </div>
             </div>
 
+            
+
             </div>
 <div class="col-md-6"></div>
             <div class="col-md-3">
@@ -259,6 +259,12 @@
         </div>
     </div>
 </footer>
+
+<!-- <script type="text/javascript">
+    $(window).on('load', function() {
+        $('#myModal').modal('show');
+    });
+</script> -->
 
 
 {% endblock %}

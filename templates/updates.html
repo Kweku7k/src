@@ -18,10 +18,10 @@
 
             <div>
 
-            <div class="card">
+            <div class="card" >
                 <div>
                     <!-- {{ url_for('static',filename='img/Fries-porn.png')}} -->
-                    <img src="{{url_for("static", filename='uploads/images/' + post.image_file)}}" alt="SRC SOCIALS" width="100%">
+                    <img src="{{post.author}}" height="300px" style="object-fit: cover;" alt="SRC SOCIALS" width="100%" alt="SRC SOCIALS">
                 </div>
                 <div class="subcard">
                     <h4>{{post.title}} <i class="fa fa-arrow-right" aria-hidden="true"></i></h4>
@@ -33,28 +33,6 @@
         </div>
         {% endfor %}
 
-        <!-- <div class="col-md-4">
-            <div class="card">
-                <img src="{{url_for("static", filename='img/social.png')}}" alt="SRC SOCIALS" width="100%">
-                <div class="subcard">
-                    <h4>Follow us on social media <i class="fa fa-arrow-right" aria-hidden="true"></i></h4>
-                    <h6 class="text-muted" style="font-weight: 100;">View More</h6>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            
-            <div class="card">
-                <div>
-                    <img src="{{url_for("static", filename='img/XOOM.png')}}" alt="SRC SOCIALS" width="100%">
-                </div>
-                <div class="subcard">
-                    <h4>WoCom'21 <i class="fa fa-arrow-right" aria-hidden="true"></i></h4>
-                    <h6 class="text-muted" style="font-weight: 100;">View More</h6>
-                </div>
-            </div>
-        </div> -->
     </div>
 </div>
 </section>
