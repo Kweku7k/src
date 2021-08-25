@@ -1,33 +1,40 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<section id="new">
 <div class="container">
-    <br>
-    <h6>Hello, Welcome</h6>
-    <h4><b>All Your Posts</b></h4>
-<br>
-    <!-- <div class="row">  -->
-        <!-- <div class="col-md-4"> -->
-            {% for post in posts %}
-            <div class="postCard">
-                <a href="{{url_for('edit', post_id=post.id)}}">
+    <div class="flexrow">   
+        <div>
+            <h4>Whats new</h4>
+            <hr class="header-line">
+        </div>
+       
+    </div>
+    <div class="row">
 
-                <div>
-                    <h5 class="text">{{post.title}}</h5>
-                    <h6 class="text-muted">{{post.date_created.strftime("%m/%d/%Y")}}</h6>
-                </div>
-                <div>
-                    <a href="{{url_for('delete', post_id=post.id)}}">
+        {% for post in posts %}
+        <div class="col-md-4">
+            <a href="{{url_for('post',id=post.id)}}">
 
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </a>
+            <div>
+
+            <div class="card" >
+                <div>
+                    <!-- {{ url_for('static',filename='img/Fries-porn.png')}} -->
+                    <img src="{{post.author}}" height="300px" style="object-fit: cover;" alt="SRC SOCIALS" width="100%" alt="SRC SOCIALS">
                 </div>
-                </a>
+                <div class="subcard">
+                    <h4>{{post.title}} <i class="fa fa-arrow-right" aria-hidden="true"></i></h4>
+                    <h6 class="text-muted" style="font-weight: 100;">View More</h6>
+                </div>
             </div>
-            {% endfor %}
-        <!-- </div> -->
+        </div>
+        </a>    
+        </div>
+        {% endfor %}
 
-        
-    <!-- </div> -->
+    </div>
 </div>
+</section>
+
 {% endblock %}

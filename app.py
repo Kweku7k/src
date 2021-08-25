@@ -215,6 +215,12 @@ def updates():
     return render_template('updates.html', posts=posts)
 
 
+@app.route('/gallery')
+def gallery(): 
+    posts = Posts.query.all()
+    return render_template('gallery.html', posts=posts)
+
+
 # @app.route("/faceofcu")
 # def faceofcu():
 #     return render_template('faceOfCu.html')
