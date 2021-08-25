@@ -178,6 +178,12 @@ section{
     width: 100%;
   }
 
+.image{
+    height:'300px';
+    object-fit: 'cover';
+    width:"100%"
+}
+
 footer{
     background-color: #992726;
     width: 100vw;
