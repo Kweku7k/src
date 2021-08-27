@@ -5,28 +5,29 @@
 <div class="container">
     <div class="flexrow">   
         <div>
-            <h4>Whats new</h4>
+            <br/>
+            <h4>Gallery</h4>
             <hr class="header-line">
         </div>
        
     </div>
     <div class="row">
 
-        {% for post in posts %}
+        {% for picture in gallery %}
         <div class="col-md-4">
-            <a href="{{url_for('post',id=post.id)}}">
+            <a href="{{picture.image}}">
 
             <div>
 
             <div class="card" >
                 <div>
                     <!-- {{ url_for('static',filename='img/Fries-porn.png')}} -->
-                    <img src="{{post.author}}" height="300px" style="object-fit: cover;" alt="SRC SOCIALS" width="100%" alt="SRC SOCIALS">
+                    <img src="{{picture.image}}" height="300px" style="object-fit: cover;" alt="SRC SOCIALS" width="100%" alt="SRC SOCIALS">
                 </div>
-                <div class="subcard">
-                    <h4>{{post.title}} <i class="fa fa-arrow-right" aria-hidden="true"></i></h4>
+                <!-- <div class="subcard">
+                    <h4>{{picture.title}} <i class="fa fa-arrow-right" aria-hidden="true"></i></h4>
                     <h6 class="text-muted" style="font-weight: 100;">View More</h6>
-                </div>
+                </div> -->
             </div>
         </div>
         </a>    

@@ -103,6 +103,18 @@ class Votes(db.Model):
         return f"Vote Ghc('{self.amount}', ' - {self.candidateId}')"
 
 
+class Gallery(db.Model):
+    tablename = ['Posts']
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String)
+    # link = db.Column(db.String)
+    image = db.Column(db.String)
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    def __repr__(self):
+        return f"Gallery Ghc('{self.id}', ' - {self.title}')"
+
 # functions
 # 1856913067:AAF6ZpmhgQ8BcTZASwlyaeELB0V5CaXVZZs
 
@@ -111,6 +123,7 @@ def sendtelegram(params):
     content = urllib.request.urlopen(url).read()
     print(content)
     return content
+
 
 @app.route('/',methods=['GET','POST'])
 def home():
@@ -216,10 +229,21 @@ def updates():
 
 
 @app.route('/gallery')
-def gallery(): 
-    posts = Posts.query.all()
-    return render_template('gallery.html', posts=posts)
+def gallery():  
+    pictures = Gallery.query.all()
+    return render_template('gallery.html', gallery=pictures)
 
+
+@app.route("/uploadGallery", methods=['POST','GET'])
+def uploadGallery():
+    form = AddGallery()
+    if form.validate_on_submit():
+        newImage = Gallery(title=form.title.data, image=form.image.data )
+        db.session.add(newImage)
+        db.session.commit()
+        return redirect(url_for('gallery'))
+
+    return render_template('uploadgallery.html', form=form)
 
 # @app.route("/faceofcu")
 # def faceofcu():
