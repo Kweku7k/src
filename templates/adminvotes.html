@@ -11,12 +11,12 @@
 <br/>
 
 <div style="display:flex; justify-content: space-between; flex-wrap: wrap;">
-    <div>
+    <!-- <div>
         <h6>Total Amount</h6>
-        <h4><b>Ghc{{totalamount}}</b></h4>
-    </div>
+        <h4><b>Ghc{{totalamount / 2}}</b></h4>
+    </div> -->
 
-    <div>
+    <!-- <div>
         <h6>Total Votes</h6>
         <h4><b>{{totalamount *2}}</b></h4>
     </div>
@@ -31,12 +31,8 @@
         {% set pending = totalamount - 1477 %}
 
         <h4><b>Ghc{{pending * 0.8}}</b></h4>
-    </div>
-
-    <!-- <div>
-        <h6>Amount Recieved</h6>
-        <h4><b>Ghc{{totalamount}}</b></h4>
     </div> -->
+
 </div>
 
 <!-- </div> -->
@@ -72,7 +68,8 @@
                         <!-- <h6 class="text-muted">{{candidate.updatedVotes}}</h6> -->
                         <!-- <h6 class="text-muted">{{candidate.votes}}</h6> -->
                         {% set highscore =  candidate.updatedVotes * 2 %}
-                        <h6 class="text-muted">{{highscore }}</h6>
+                        <!-- <h6 class="text-muted">{{highscore }}</h6> -->
+                        <h6 class="text-muted">{{candidate.votes }}</h6>
                     </a>
                 </div>
             </div>

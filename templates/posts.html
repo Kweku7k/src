@@ -14,7 +14,7 @@
 
                 <div>
                     <h5 class="text">{{post.title}}</h5>
-                    <h6 class="text-muted">{{post.author}}</h6>
+                    <h6 class="text-muted">{{post.date_created.strftime("%m/%d/%Y")}}</h6>
                 </div>
                 <div>
                     <a href="{{url_for('delete', post_id=post.id)}}">

@@ -13,6 +13,14 @@ class AddPostForm(FlaskForm):
     submit = SubmitField()
 
 
+class AddGallery(FlaskForm):
+    title = StringField('Title', validators=[DataRequired()])
+    image = StringField('Image Link', widget=TextArea(), validators=[DataRequired()])
+    picture = FileField('Add a picture', validators=[ FileAllowed(['jpg', 'png','jpeg'])])
+    submit = SubmitField()
+
+
+
 class AddContestant(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     age = StringField('Age', validators=[DataRequired()])
@@ -43,6 +51,6 @@ class LoginForm(FlaskForm):
 
 class FeedbackForm(FlaskForm):
     phone = StringField('Phone')
-    feedback = StringField('Feedback', validators=[DataRequired()])
+    feedback = StringField('Feedback',widget=TextArea(), validators=[DataRequired()])
     submit = SubmitField('Submit')
     

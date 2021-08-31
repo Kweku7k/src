@@ -87,7 +87,7 @@ class Feedback(db.Model):
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
     
     def __repr__(self):
-        return f"Feedback('{self.id}', '{self.title}')"
+        return f"Feedback('{self.id}', '{self.phone}')"
 
 class Votes(db.Model):
     tablename = ['Posts']
@@ -103,6 +103,18 @@ class Votes(db.Model):
         return f"Vote Ghc('{self.amount}', ' - {self.candidateId}')"
 
 
+class Gallery(db.Model):
+    tablename = ['Posts']
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String)
+    # link = db.Column(db.String)
+    image = db.Column(db.String)
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    def __repr__(self):
+        return f"Gallery Ghc('{self.id}', ' - {self.title}')"
+
 # functions
 # 1856913067:AAF6ZpmhgQ8BcTZASwlyaeELB0V5CaXVZZs
 
@@ -112,8 +124,16 @@ def sendtelegram(params):
     print(content)
     return content
 
+
 @app.route('/',methods=['GET','POST'])
 def home():
+    candidates = Candidates.query.all()
+    limitpost = Posts.query.order_by(Posts.id.desc()).limit(3).all()
+    print("The Posts" + str(limitpost)) 
+    return render_template('index.html', candidates=candidates, limitpost=limitpost)
+
+@app.route('/faceofcu',methods=['GET','POST'])
+def faceofcu():
     candidates = Candidates.query.all()
     return render_template('faceofcu.html', candidates=candidates)
 # Default Config
@@ -208,9 +228,26 @@ def updates():
     return render_template('updates.html', posts=posts)
 
 
-@app.route("/faceofcu")
-def faceofcu():
-    return render_template('faceOfCu.html')
+@app.route('/gallery')
+def gallery():  
+    pictures = Gallery.query.all()
+    return render_template('gallery.html', gallery=pictures)
+
+
+@app.route("/uploadGallery", methods=['POST','GET'])
+def uploadGallery():
+    form = AddGallery()
+    if form.validate_on_submit():
+        newImage = Gallery(title=form.title.data, image=form.image.data )
+        db.session.add(newImage)
+        db.session.commit()
+        return redirect(url_for('gallery'))
+
+    return render_template('uploadgallery.html', form=form)
+
+# @app.route("/faceofcu")
+# def faceofcu():
+#     return render_template('faceOfCu.html')
 
 @app.route("/fpreview/<int:id>")
 def fpreview(id):
@@ -251,8 +288,8 @@ def thanks(id, amount, ref):
     sender_id = "PrestoSl" #11 Characters maximum
     # send_sms(api_key,phone,message,sender_id)
     amount = round(amount / 0.5)
-    
-    sendtelegram(message)
+
+    # sendtelegram(message)
     flash(f'' + str(amount) + ' votes(s) have been cast for ' + user.name,'success')
     return redirect(url_for('home'))
     # return render_template('thankyou.html')
@@ -309,13 +346,16 @@ def feedback():
         newFeedback = Feedback(phone=form.phone.data, feedback=form.feedback.data)
         db.session.add(newFeedback)
         db.session.commit()
+        sendtelegram(form.feedback.data)
         flash(f'Your feedback has been submitted successfully','success')
         return redirect(url_for('home'))
     return render_template('feedback.html', form=form)
 
+
+
 @app.route("/admin/posts")
 def adminPosts():
-    posts = Posts.query.all()
+    posts = Posts.query.order_by(Posts.id.desc()).all()
     return render_template('posts.html', posts=posts)
 
 @app.route("/admin/candidates")
@@ -331,7 +371,7 @@ def adminvoteslogs():
 
 @app.route("/admin/votes")
 def adminvotes():
-    candidates = Candidates.query.all()
+    candidates = Candidates.query.order_by(Candidates.votes.desc()).all()
     votes = Votes.query.all()
     totalamount = 0
     totaloldvotes = 0
@@ -339,29 +379,29 @@ def adminvotes():
     # Calculate the votes in db before logs
     for old_vote in candidates:
         totaloldvotes = totaloldvotes + old_vote.votes
-    print("Total of old votes " + str(totaloldvotes))
+    print("Total votes " + str(totaloldvotes))
     # Calculate votes from logs 
-    for vote in votes:
-        totalamount = totalamount + float(vote.amount)
-    totalamount = totaloldvotes + totalamount
+    # for vote in votes:
+    #     totalamount = totalamount + float(vote.amount)
+    # totalamount = totaloldvotes + totalamount
 
-    print("Total Amount is " + str( totalamount))
+    # print("Total Amount is " + str( totalamount))
 
     # for loop to assign votes to candidates
-    for candidate in candidates:
-        # for each candidates
-        print(candidate)
-        candidateVotes = Votes.query.filter_by(candidateId = str(candidate.id)).all()
-        candidateTotalVotes = 0
-        # Calculate the total votes
-        for vote in candidateVotes:
-            candidateTotalVotes = candidateTotalVotes + float(vote.amount)
+    # for candidate in candidates:
+
+    #     print(candidate)
+    #     candidateVotes = Votes.query.filter_by(candidateId = str(candidate.id)).all()
+    #     candidateTotalVotes = 0
+
+    #     for vote in candidateVotes:
+    #         candidateTotalVotes = candidateTotalVotes + float(vote.amount)
         
-        # candidateTotalVotes = candidateTotalVotes + candidate.votes
-        print("Total Votes for "  + candidate.name + " " + str(candidateTotalVotes))
-        candidate.updatedVotes = candidate.votes + candidateTotalVotes
-        db.session.commit()
-        print("------")
+
+    #     print("Total Votes for "  + candidate.name + " " + str(candidateTotalVotes))
+    #     candidate.updatedVotes = candidate.votes + candidateTotalVotes
+    #     db.session.commit()
+    #     print("------")
 
         # print("All The Votes are" + str(votes))
     print("Total amount of money recieved is " + str(totalamount))
@@ -380,7 +420,8 @@ def addpost():
     if form.validate_on_submit():
         # print(form.picture.data)
         if form.picture.data:
-            filename = images.save(form.picture.data)
+            pass
+            # filename = images.save(form.picture.data)
         else:
             filename = 'IneruuTrade.png'
         print(filename)

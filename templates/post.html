@@ -14,15 +14,19 @@
         <div>
             <div class="container">
                 <div class="row">
-                        <!-- <div> -->
-                            <img src="{{url_for("static", filename='uploads/images/' + post.image_file)}}" alt="SRC SOCIALS" style="object-fit: cover; width:100%;">
-                        <!-- </div> -->
+                        <div>
+                            <img src="{{post.author}}" alt="SRC SOCIALS" style="object-fit: cover; width:100%;">
+                            <!-- <img class="image" src={{post.author}}/> -->
+                        </div>
                         <br/>
                     </div>
                 </div>
-                <h4>{{post.author}}</h4>
-                <div class="row">
-                            <p>{{post.content}} </p>
+                <div >
+                    <h3><b>{{post.title}}</b></h3>
+                    <h5 class="text">{{post.date_created.strftime("%m/%d/%Y")}}</h5>
+
+                    <br/>
+                    <p>{{post.content}} </p>
 
                 </div>
         </div>
